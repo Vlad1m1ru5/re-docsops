@@ -1,7 +1,7 @@
-import { Card, Col, Layout, Row, Typography } from "antd";
+import DocumentsTable from "@/components/documents-table";
+import { Layout } from "antd";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -12,70 +12,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Content>
-        <Typography.Title>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </Typography.Title>
-        <Typography.Paragraph>
-          Get started by editing <code>pages/index.tsx</code>
-        </Typography.Paragraph>
-        <Row gutter={[16, 16]}>
-          <Col span={8}>
-            <Card bordered={false} hoverable>
-              <a href="https://nextjs.org/docs">
-                <Typography.Title level={2}>
-                  Documentation &rarr;
-                </Typography.Title>
-                <Typography.Paragraph>
-                  Find in-depth information about Next.js features and API.
-                </Typography.Paragraph>
-              </a>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card bordered={false} hoverable>
-              <a href="https://nextjs.org/learn">
-                <Typography.Title level={2}>Learn &rarr;</Typography.Title>
-                <Typography.Paragraph>
-                  Learn about Next.js in an interactive course with quizzes!
-                </Typography.Paragraph>
-              </a>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card bordered={false} hoverable>
-              <a href="https://github.com/vercel/next.js/tree/canary/examples">
-                <Typography.Title level={2}>Examples &rarr;</Typography.Title>
-                <Typography.Paragraph>
-                  Discover and deploy boilerplate example Next.js projects.
-                </Typography.Paragraph>
-              </a>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card bordered={false} hoverable>
-              <a href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app">
-                <Typography.Title level={2}>Deploy &rarr;</Typography.Title>
-                <Typography.Paragraph>
-                  Instantly deploy your Next.js site to a public URL with
-                  Vercel.
-                </Typography.Paragraph>
-              </a>
-            </Card>
-          </Col>
-        </Row>
+        <DocumentsTable />
       </Layout.Content>
-      <Layout.Footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <Typography.Text>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </Typography.Text>
-        </a>
-      </Layout.Footer>
     </Layout>
   );
 };
