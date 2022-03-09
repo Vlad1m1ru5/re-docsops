@@ -1,13 +1,13 @@
-import * as documentsServie from "@/services/documents-service";
+import documentsService from "@/services/documents-service";
 import type { Document } from "@/types";
 import { useEffect, useState } from "react";
 
-const useDocumets = () => {
+const useDocuments = () => {
   const [documents, setDocuments] = useState<Document[]>([]);
 
   useEffect(() => {
     const handleAsync = async () => {
-      const documents = await documentsServie.findAll();
+      const documents = await documentsService.getAllDocuments();
       setDocuments(documents);
     };
     handleAsync();
@@ -16,4 +16,4 @@ const useDocumets = () => {
   return documents;
 };
 
-export default useDocumets;
+export default useDocuments;
