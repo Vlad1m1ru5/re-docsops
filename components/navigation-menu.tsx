@@ -1,8 +1,8 @@
 import { Menu } from "antd";
 import Link from "next/link";
-import React from "react";
+import type { FC } from "react";
 
-const NavigationMenu = () => {
+const NavigationMenu: FC = () => {
   return (
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["/"]}>
       <Menu.Item key="/">
