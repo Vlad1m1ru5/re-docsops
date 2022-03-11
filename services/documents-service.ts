@@ -16,6 +16,14 @@ class DocumentsService {
 
     return data ?? [];
   }
+
+  async postDocument(documentDto: Partial<Document>) {
+    const { status } = await this.#supabaseClient
+      .from<Document>("test")
+      .insert(documentDto);
+
+    return;
+  }
 }
 
 export default new DocumentsService(supabaseClient);
