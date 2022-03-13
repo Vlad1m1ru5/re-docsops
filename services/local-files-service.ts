@@ -1,7 +1,7 @@
 import type { File } from "formidable";
 import { readFile } from "fs/promises";
 
-class FilesService {
+class LocalFilesService {
   mapToFiles(file: File | File[]) {
     return Array.isArray(file) ? file : [file];
   }
@@ -26,4 +26,4 @@ class FilesService {
   }
 }
 
-export default new FilesService();
+export default new LocalFilesService();

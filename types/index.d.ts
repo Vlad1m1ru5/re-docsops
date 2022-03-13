@@ -1,4 +1,4 @@
-export interface Metadata extends Record<string, any> {}
+export interface Metadata extends Record<string, unknown> {}
 
 export interface Document {
   data: Metadata;

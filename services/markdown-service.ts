@@ -1,4 +1,5 @@
 import markdownProcessor from "@/configs/markdown-processor";
+import type { Metadata } from "@/types";
 import type { Processor } from "unified";
 
 class MarkdownService {
@@ -8,9 +9,7 @@ class MarkdownService {
     this.#markdownProcessor = markdownProcessor;
   }
 
-  async processMarkdown(
-    markdown: string
-  ): Promise<[string, Record<string, unknown>]> {
+  async processMarkdown(markdown: string): Promise<[string, Metadata]> {
     try {
       const vFile = await this.#markdownProcessor.process(markdown);
       return [vFile.toString(), vFile.data];
