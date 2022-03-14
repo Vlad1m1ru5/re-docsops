@@ -1,8 +1,7 @@
-import DocumentsTable from "@/components/documents-table";
+import DataTable from "@/components/data-table";
 import NavigationMenu from "@/components/navigation-menu";
-import UploadFormModal from "@/components/upload-form-modal";
-import styles from "@/styles/Home.module.css";
-import { Col, Layout, Row } from "antd";
+import styles from "@/styles/home.module.css";
+import { Layout } from "antd";
 import type { NextPage } from "next";
 import Head from "next/head";
 
@@ -15,17 +14,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout.Header>
-        <Row justify="space-between">
-          <Col>
-            <NavigationMenu />
-          </Col>
-          <Col>
-            <UploadFormModal />
-          </Col>
-        </Row>
+        <NavigationMenu />
       </Layout.Header>
       <Layout.Content className={styles.pageContent}>
-        <DocumentsTable />
+        <DataTable />
       </Layout.Content>
     </Layout>
   );
