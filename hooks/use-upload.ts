@@ -1,4 +1,9 @@
+import fetcherService from "@/services/fetcher-service";
 import { Form } from "antd";
+
+const NAME = "upload";
+const RULES = [{ required: true }];
+const VALUE_TO_PROP_NAME = "fileList";
 
 const useUpload = () => {
   const [form] = Form.useForm<{ upload: any }>();
@@ -17,7 +22,28 @@ const useUpload = () => {
     return event && event.fileList;
   };
 
-  return { form, customRequest, getValueFromEvent };
+  const postFilesFormData = ({ upload }: { upload?: any }) => {
+    const files = Array.isArray(upload) ? upload : [upload];
+
+    const formData = files.reduce((formData, file) => {
+      if (file.originFileObj && file.name) {
+        formData.append(NAME, file.originFileObj, file.name);
+      }
+      return formData;
+    }, new FormData());
+
+    return fetcherService.postFilesFormData(formData);
+  };
+
+  return {
+    form,
+    name: NAME,
+    rules: RULES,
+    valueToPropName: VALUE_TO_PROP_NAME,
+    postFilesFormData,
+    customRequest,
+    getValueFromEvent,
+  };
 };
 
 export default useUpload;

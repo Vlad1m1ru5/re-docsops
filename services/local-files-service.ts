@@ -8,17 +8,17 @@ class LocalFilesService {
 
   partitionMarkdownFiles(files: File[]) {
     const markdownFiles: File[] = [];
-    const notMarkdownFiles: File[] = [];
+    const resourceFiles: File[] = [];
 
     files.forEach((file) => {
       if (file.originalFilename?.endsWith(".md")) {
         return markdownFiles.push(file);
       }
 
-      notMarkdownFiles.push(file);
+      resourceFiles.push(file);
     });
 
-    return [markdownFiles, notMarkdownFiles];
+    return [markdownFiles, resourceFiles];
   }
 
   read(file: File) {

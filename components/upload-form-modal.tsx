@@ -2,37 +2,19 @@ import useModal from "@/hooks/use-modal";
 import useUpload from "@/hooks/use-upload";
 import { InboxOutlined } from "@ant-design/icons";
 import { Button, Form, Modal, Upload } from "antd";
-import type { FC } from "react";
+import { FC, useCallback } from "react";
 
 const UploadFormModal: FC = () => {
   const modal = useModal();
   const upload = useUpload();
 
-  const handleFinish = ({ upload }: { upload?: any }) => {
-    const files = Array.isArray(upload) ? upload : [upload];
-
-    const formData = files?.reduce((formData, file) => {
-      if (file.originFileObj) {
-        formData.append("upload", file.originFileObj, file.name);
-      }
-      return formData;
-    }, new FormData());
-
-    const options = {
-      method: "POST",
-      body: formData,
-    };
-
-    fetch("/api/files", options);
-  };
-
-  const modalOnOk = () => {
+  const handleOk = useCallback(() => {
     upload.form.validateFields().then((values) => {
       upload.form.resetFields();
-      handleFinish(values);
+      upload.postFilesFormData(values);
       modal.toggleVisible();
     });
-  };
+  }, [modal, upload]);
 
   return (
     <>
@@ -42,14 +24,14 @@ const UploadFormModal: FC = () => {
       <Modal
         title="New Document"
         visible={modal.visible}
-        onOk={modalOnOk}
+        onOk={handleOk}
         onCancel={modal.toggleVisible}
       >
         <Form form={upload.form}>
           <Form.Item
-            name="upload"
-            valuePropName="fileList"
-            rules={[{ required: true }]}
+            name={upload.name}
+            valuePropName={upload.valueToPropName}
+            rules={upload.rules}
             getValueFromEvent={upload.getValueFromEvent}
           >
             <Upload.Dragger multiple customRequest={upload.customRequest}>
