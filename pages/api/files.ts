@@ -1,4 +1,4 @@
-import documentsService from "@/services/documents-service";
+import supabaseAdmin from "@/configs/supabase-admin";
 import httpFilesService from "@/services/http-files-service";
 import localFilesService from "@/services/local-files-service";
 import markdownService from "@/services/markdown-service";
@@ -19,7 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     for await (const markdown of mdFiles.map(localFilesService.read)) {
       const [content, data] = await markdownService.processMarkdown(markdown);
-      await documentsService.postDocument({ content, data });
+      await supabaseAdmin.from("test").upsert([{ content, data }]);
     }
 
     return res.status(201).end(STATUS_CODES[201]);

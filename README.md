@@ -2,12 +2,16 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Configure Envirenment
+## Envirenment Configuration
 
 ```sh
 # .env.local
+# NOTE: client and server side
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_KEY=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# NOTE: server side __only__
+SUPABASE_SERVICE_ROLE_KEY=
 ```
 
 ## Getting Started

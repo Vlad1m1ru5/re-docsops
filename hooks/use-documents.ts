@@ -1,4 +1,4 @@
-import documentsService from "@/services/documents-service";
+import supabaseClient from "@/configs/supabase-client";
 import type { Document } from "@/types";
 import { useEffect, useState } from "react";
 
@@ -7,11 +7,12 @@ const useDocuments = () => {
 
   useEffect(() => {
     const handleAsync = async () => {
-      const documents = await documentsService.getAllDocuments();
-      setDocuments(documents);
+      const { data } = await supabaseClient.from<Document>("test").select("*");
+
+      setDocuments(data ?? []);
     };
     handleAsync();
-  }, []);
+  }, [setDocuments]);
 
   return documents;
 };

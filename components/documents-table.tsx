@@ -5,7 +5,7 @@ import type { FC } from "react";
 const DocumentsTable: FC = () => {
   const documents = useDocuments();
 
-  return <Table dataSource={documents} />;
+  return <Table pagination={false} dataSource={documents} />;
 };
 
 export default DocumentsTable;
