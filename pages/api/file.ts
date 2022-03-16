@@ -1,9 +1,9 @@
-import incomingForm from "~/configs/incoming-form";
-import markdownProcessor from "~/configs/markdown-processor";
-import supabaseAdmin from "~/configs/supabase-admin";
 import { readFile } from "fs/promises";
 import { STATUS_CODES } from "http";
 import type { NextApiRequest, NextApiResponse } from "next";
+import incomingForm from "~/configs/incoming-form";
+import markdownProcessor from "~/configs/markdown-processor";
+import supabaseAdmin from "~/configs/supabase-admin";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req;
@@ -20,6 +20,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const buffer = await readFile(files.file.filepath, "utf-8");
       const vFile = await markdownProcessor.process(buffer);
+
+      vFile.data.name = vFile.data.name || files.file.originalFilename;
+      vFile.data.title = vFile.data.title || vFile.data.name;
+
       const values = { data: vFile.data, content: vFile.toString() };
 
       const { data } = await supabaseAdmin.from("test").upsert(values);

@@ -1,5 +1,5 @@
 {
-  "name": "re-docops",
+  "name": "re-docsops",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-markdown": "^8.0.1",
     "remark": "^14.0.2",
     "remark-extract-frontmatter": "^3.2.0",
     "remark-frontmatter": "^4.0.1",

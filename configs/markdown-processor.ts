@@ -1,12 +1,9 @@
 import { remark } from "remark";
-import remarkFrontmatterPlugin from "remark-extract-frontmatter";
-import remarkFrontmatter from "remark-frontmatter";
-import { parse } from "yaml";
+import remarkPlugins from "./remark-plugins";
 
-const configureMarkdownProcessor = () => {
-  return remark()
-    .use(remarkFrontmatter, ["yaml"])
-    .use(remarkFrontmatterPlugin, { yaml: parse });
-};
+const markdownProcessor = remarkPlugins.reduce(
+  (processor, [plugin, ...settings]) => processor.use(plugin, ...settings),
+  remark()
+);
 
-export default configureMarkdownProcessor();
+export default markdownProcessor;
