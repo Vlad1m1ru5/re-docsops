@@ -1,0 +1,13 @@
+.pageLayout {
+    min-height: 100vh;
+}
+
+.pageLayoutHeader {
+    background-color: #fff;
+    box-shadow: 0 2px 8px #f0f1f2;
+    z-index: 10;
+}
+
+.pageLayoutContent {
+    padding: 0 24px;
+}

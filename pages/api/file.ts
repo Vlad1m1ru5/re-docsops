@@ -1,6 +1,6 @@
-import incomingForm from "@/configs/incoming-form";
-import markdownProcessor from "@/configs/markdown-processor";
-import supabaseAdmin from "@/configs/supabase-admin";
+import incomingForm from "~/configs/incoming-form";
+import markdownProcessor from "~/configs/markdown-processor";
+import supabaseAdmin from "~/configs/supabase-admin";
 import { readFile } from "fs/promises";
 import { STATUS_CODES } from "http";
 import type { NextApiRequest, NextApiResponse } from "next";
