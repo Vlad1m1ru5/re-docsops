@@ -20,7 +20,7 @@ File.getInitialProps = async ({ query }) => {
   const { data: test } = await supabaseClient
     .from("test")
     .select("data, content")
-    .eq("id", id)
+    .match({ id })
     .single();
 
   const { data, content: markdown } = test;

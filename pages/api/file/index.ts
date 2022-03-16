@@ -26,12 +26,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       const values = { data: vFile.data, content: vFile.toString() };
 
-      const { data } = await supabaseAdmin.from("test").upsert(values);
-      const body =
-        data?.map(({ id, data }) => (data.key ? data : { ...data, key: id })) ??
-        [];
+      const { data } = await supabaseAdmin
+        .from("test")
+        .insert(values)
+        .select("id")
+        .throwOnError()
+        .single();
 
-      return res.status(200).json(body);
+      return res.status(200).json(data);
     } catch (error) {
       return res.status(500).end(error);
     }

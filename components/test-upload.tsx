@@ -1,28 +1,49 @@
 import { InboxOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
-import type { FC } from "react";
+import type { RcFile, UploadFile } from "antd/lib/upload/interface";
+import { FC, useEffect, useState } from "react";
 
 const TestUpload: FC = () => {
-  const beforeUpload = (file: any) => {
-    const isMd = String(file?.name).endsWith(".md");
+  const [uploadUidToId] = useState<Map<string, string>>(new Map());
+
+  useEffect(() => {
+    return () => uploadUidToId.clear();
+  }, [uploadUidToId]);
+
+  const beforeUpload = (file: RcFile) => {
+    const isMd = String(file.name).endsWith(".md");
     return isMd || Upload.LIST_IGNORE;
   };
 
   const customRequest = async (options: any) => {
     if (!options.file) return;
 
-    const data = new FormData();
-    data.append("file", options.file);
-
-    const config = { method: "POST", body: data };
+    const formData = new FormData();
+    formData.append("file", options.file);
+    const config = { method: "POST", body: formData };
     const res = await fetch("/api/file", config);
 
     if (res.status !== 200) return options.onError(res.statusText);
-    return options.onSuccess(await res.json());
+
+    const { id } = await res.json();
+
+    if (!id) return options.onError();
+
+    uploadUidToId.set(options.file.uid, id);
+    return options.onSuccess("Ok");
   };
 
-  const onRemove = (data: any) => {
-    console.log(data);
+  const onRemove = async (file: UploadFile) => {
+    const id = uploadUidToId.get(file.uid);
+
+    if (!id) return;
+
+    const config = { method: "DELETE" };
+    const res = await fetch(`/api/file/${id}`, config);
+
+    if (res.status !== 204) return;
+
+    uploadUidToId.delete(file.uid);
   };
 
   return (
