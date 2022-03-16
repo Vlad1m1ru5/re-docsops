@@ -6,7 +6,7 @@ const nextConfig = {
     supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   },
   serverRuntimeConfig: {
-    supabaseKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    supabaseKey: process.env.NEXT_SERVER_SUPABASE_SERVICE_ROLE_KEY,
   },
 };
 
