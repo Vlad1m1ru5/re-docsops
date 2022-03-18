@@ -1,5 +1,5 @@
-import { STATUS_CODES } from "http";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { STATUS_CODES } from "node:http";
 import supabaseAdmin from "~/configs/supabase-admin";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

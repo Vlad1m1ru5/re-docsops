@@ -21,7 +21,7 @@ const TestUpload: FC = () => {
     const formData = new FormData();
     formData.append("file", options.file);
     const config = { method: "POST", body: formData };
-    const res = await fetch("/api/file", config);
+    const res = await fetch("/api/files", config);
 
     if (res.status !== 200) return options.onError(res.statusText);
 
