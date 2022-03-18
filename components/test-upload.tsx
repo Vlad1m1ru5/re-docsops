@@ -1,7 +1,8 @@
 import { InboxOutlined } from "@ant-design/icons";
 import { Upload } from "antd";
 import type { RcFile, UploadFile } from "antd/lib/upload/interface";
-import { FC, useEffect, useState } from "react";
+import type { FC } from "react";
+import { useEffect, useState } from "react";
 
 const TestUpload: FC = () => {
   const [uploadUidToId] = useState<Map<string, string>>(new Map());

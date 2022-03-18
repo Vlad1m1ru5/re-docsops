@@ -1,11 +1,7 @@
 import formidable from "formidable";
 
-const configureIncomingForm = () => {
-  const options = {
-    multiples: true,
-  };
+const incomingForm = formidable({
+  multiples: true,
+});
 
-  return formidable(options);
-};
-
-export default configureIncomingForm();
+export default incomingForm;

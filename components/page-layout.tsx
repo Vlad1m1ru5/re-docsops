@@ -1,4 +1,4 @@
-import { Layout, PageHeader } from "antd";
+import { Layout, PageHeader, Space } from "antd";
 import type { FC } from "react";
 import styles from "~/styles/page-layout.module.css";
 import PageLayoutHead from "./page-layout-head";
@@ -18,7 +18,9 @@ const PageLayout: FC<{ title: string }> = ({ title, children }) => {
         </Layout.Sider>
         <Layout.Content>
           <PageHeader title={title} />
-          <Layout className={styles.pageLayoutContent}>{children}</Layout>
+          <Layout className={styles.pageLayoutContent}>
+            <Space direction="vertical">{children}</Space>
+          </Layout>
         </Layout.Content>
       </Layout>
     </Layout>
