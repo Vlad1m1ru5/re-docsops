@@ -5,7 +5,7 @@ import type { FC } from "react";
 import { useEffect, useState } from "react";
 import supabaseClient from "~/configs/supabase-client";
 
-const TestExplorerTable: FC = () => {
+const TestExplorer: FC = () => {
   const [shouldFetch, setShouldFetch] = useState(true);
   const [testData, setTestData] = useState<any[]>([]);
 
@@ -20,7 +20,7 @@ const TestExplorerTable: FC = () => {
   }, [shouldFetch]);
 
   const renderAction = (id: string) => (
-    <Link href={`/files/${id}`}>
+    <Link href={`/file/${id}`}>
       <a href="">
         <Space size={4}>
           <SearchOutlined />
@@ -43,4 +43,4 @@ const TestExplorerTable: FC = () => {
   );
 };
 
-export default TestExplorerTable;
+export default TestExplorer;

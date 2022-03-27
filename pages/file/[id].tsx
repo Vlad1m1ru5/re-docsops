@@ -1,18 +1,15 @@
 import type { NextPage } from "next";
 import PageLayout from "~/components/page-layout";
-import TestDownload from "~/components/test-download";
-import TestPresenter from "~/components/test-presenter";
+import TestFile from "~/components/test-file";
 import supabaseClient from "~/configs/supabase-client";
 
-const File: NextPage<{ id: string; title: string; markdown: string }> = ({
-  id,
+const File: NextPage<{ title: string; markdown: string }> = ({
   title,
   markdown,
 }) => {
   return (
     <PageLayout title={title}>
-      <TestDownload id={id} extensions={["docx"]} />
-      <TestPresenter markdown={markdown} />
+      <TestFile markdown={markdown} />
     </PageLayout>
   );
 };
@@ -31,7 +28,7 @@ File.getInitialProps = async ({ query }) => {
   const { data, content: markdown } = test;
   const title = data.title || data.name;
 
-  return { id, title, markdown };
+  return { title, markdown };
 };
 
 export default File;
